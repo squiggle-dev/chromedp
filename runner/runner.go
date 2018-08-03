@@ -3,6 +3,7 @@ package runner
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"io/ioutil"
 	"os"
@@ -248,7 +249,10 @@ func (r *Runner) Shutdown(ctxt context.Context, opts ...client.Option) error {
 	if runtime.GOOS == "darwin" && r.cmd != nil && r.cmd.Process != nil {
 		return r.cmd.Process.Signal(syscall.SIGTERM)
 	}
-
+	errorKill := r.cmd.Process.Kill()
+	if errorKill != nil {
+		return errors.New("Chrome not exit")
+	}
 	return nil
 }
 
