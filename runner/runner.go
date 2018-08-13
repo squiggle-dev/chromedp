@@ -13,7 +13,7 @@ import (
 	"sync"
 	"syscall"
 
-	"github.com/chromedp/chromedp/client"
+	"github.com/squiggle-dev/chromedp/client"
 )
 
 const (

@@ -21,7 +21,7 @@ import (
 	"github.com/chromedp/cdproto/page"
 	"github.com/chromedp/cdproto/runtime"
 
-	"github.com/chromedp/chromedp/client"
+	"github.com/squiggle-dev/chromedp/client"
 )
 
 // TargetHandler manages a Chrome DevTools Protocol target.
