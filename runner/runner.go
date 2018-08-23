@@ -3,15 +3,12 @@ package runner
 
 import (
 	"context"
-	"errors"
 	"fmt"
 	"io/ioutil"
 	"os"
 	"os/exec"
 	"regexp"
-	"runtime"
 	"sync"
-	"syscall"
 
 	"github.com/squiggle-dev/chromedp/client"
 )
