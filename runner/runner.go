@@ -242,17 +242,11 @@ func (r *Runner) Shutdown(ctxt context.Context, opts ...client.Option) error {
 		}
 	}
 
-	// osx applications do not automatically exit when all windows (ie, tabs)
-	// closed, so send SIGTERM.
-	//
-	// TODO: add other behavior here for more process options on shutdown?
-	if runtime.GOOS == "darwin" && r.cmd != nil && r.cmd.Process != nil {
-		return r.cmd.Process.Signal(syscall.SIGTERM)
+	// kill the Chrome process to ensure none are left alive post-Shutdown.
+	if r.cmd != nil && r.cmd.Process != nil {
+		return r.cmd.Process.Kill()
 	}
-	errorKill := r.cmd.Process.Kill()
-	if errorKill != nil {
-		return errors.New("Chrome not exit")
-	}
+
 	return nil
 }
 
